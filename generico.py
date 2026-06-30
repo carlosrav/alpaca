@@ -1,7 +1,9 @@
 import os
+import sys
 import json
 import time
 import logging
+import argparse
 from datetime import datetime
 from dotenv import load_dotenv
 
@@ -12,18 +14,25 @@ from alpaca.trading.enums import OrderSide, TimeInForce, OrderStatus, QueryOrder
 from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.requests import StockLatestTradeRequest
 
-# Configuración de logs
+# Parsear argumentos de consola para el activo
+parser = argparse.ArgumentParser(description="Bot de Grid Trading Genérico para Alpaca")
+parser.add_argument("--activo", type=str, required=True, help="Símbolo del activo a operar (ej. AMZN, AAPL, TSLA)")
+args, unknown = parser.parse_known_args()
+
+SYMBOL = args.activo.upper()
+STATE_FILE = f"{SYMBOL}_state.json"
+LOG_FILE = f"{SYMBOL}_bot.log"
+
+# Configuración dinámica de logs según el activo
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler("NVDA_bot.log", encoding='utf-8'),
+        logging.FileHandler(LOG_FILE, encoding='utf-8'),
         logging.StreamHandler()
     ]
 )
 
-STATE_FILE = "NVDA_state.json"
-SYMBOL = "NVDA"
 BUY_AMOUNT = 10000.0  # Monto en USD por compra
 MAX_BUYS = 10         # Máximo de compras en la cuadrícula
 BUY_DROP_PCT = 0.05   # 5% de caída
@@ -277,7 +286,7 @@ def main():
         logging.error("Credenciales de Alpaca faltantes en el archivo .env. Finalizando.")
         return
         
-    logging.info("Iniciando Bot de Grid Trading para NVDA...")
+    logging.info(f"Iniciando Bot de Grid Trading para {SYMBOL}...")
     
     # Inicializar clientes
     trading_client = TradingClient(api_key, secret_key, paper=True)
@@ -303,7 +312,7 @@ def main():
     # Bucle de control
     while True:
         try:
-            # Cargar estado y lista de compras en cada iteración para reflejar cambios externos en NVDA_state.json
+            # Cargar estado y lista de compras en cada iteración para reflejar cambios externos en el JSON dinámico
             state = load_state()
             purchases = state["purchases"]
             
