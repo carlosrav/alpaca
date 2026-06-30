@@ -1,3 +1,4 @@
 .env
 .agent
 .venv
+__pycache__

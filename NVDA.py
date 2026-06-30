@@ -7,8 +7,8 @@ from dotenv import load_dotenv
 
 # Importaciones de Alpaca SDK
 from alpaca.trading.client import TradingClient
-from alpaca.trading.requests import MarketOrderRequest, GetOrdersRequest
-from alpaca.trading.enums import OrderSide, TimeInForce, OrderStatus, QueryOrderStatus
+from alpaca.trading.requests import MarketOrderRequest
+from alpaca.trading.enums import OrderSide, TimeInForce, OrderStatus
 from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.requests import StockLatestTradeRequest
 
@@ -23,7 +23,7 @@ logging.basicConfig(
 )
 
 STATE_FILE = "tesla_state.json"
-SYMBOL = "TSLA"
+SYMBOL = "NVDA"
 BUY_AMOUNT = 10000.0  # Monto en USD por compra
 MAX_BUYS = 10         # Máximo de compras en la cuadrícula
 BUY_DROP_PCT = 0.05   # 5% de caída
@@ -52,131 +52,6 @@ def save_state(state):
         logging.debug("Estado guardado correctamente.")
     except Exception as e:
         logging.error(f"Error al escribir en el archivo de estado {STATE_FILE}: {e}")
-
-def sync_state_with_server(trading_client, symbol):
-    """Sincroniza el estado del JSON local con las operaciones (posición) abiertas en Alpaca."""
-    logging.info(f"Sincronizando estado local con el servidor Alpaca para {symbol}...")
-    try:
-        # 1. Obtener la posición abierta actual en Alpaca
-        try:
-            position = trading_client.get_open_position(symbol)
-            position_qty = float(position.qty)
-            avg_entry_price = float(position.avg_entry_price)
-            logging.info(f"Posición abierta encontrada en Alpaca: {position_qty:.6f} acciones de {symbol} a un precio promedio de ${avg_entry_price:.2f}")
-        except Exception as e:
-            # Si no hay posición abierta (404 Position not found)
-            if "not found" in str(e).lower() or "404" in str(e):
-                logging.info(f"No se encontró posición abierta para {symbol} en Alpaca. Limpiando compras en el JSON.")
-                state = {"purchases": []}
-                save_state(state)
-                return state
-            else:
-                logging.error(f"Error al obtener la posición de {symbol} en Alpaca: {e}")
-                # En caso de error de conexión/API, devolvemos el estado local existente
-                return load_state()
-
-        # 2. Obtener órdenes cerradas para reconstruir los lotes usando lógica LIFO
-        req_params = GetOrdersRequest(
-            status=QueryOrderStatus.CLOSED,
-            symbols=[symbol],
-            limit=100
-        )
-        orders = trading_client.get_orders(filter=req_params)
-        
-        # Filtrar solo las que estén FILLED y tengan fecha de ejecución
-        filled_orders = [o for o in orders if o.status == OrderStatus.FILLED and o.filled_at is not None]
-        # Ordenar por filled_at ascendente (más antiguas primero)
-        filled_orders.sort(key=lambda o: o.filled_at)
-        
-        reconstructed_purchases = []
-        for order in filled_orders:
-            qty = float(order.filled_qty)
-            price = float(order.filled_avg_price)
-            order_id = str(order.id)
-            timestamp = order.filled_at.isoformat()
-            
-            if order.side == OrderSide.BUY:
-                reconstructed_purchases.append({
-                    "price": price,
-                    "qty": qty,
-                    "order_id": order_id,
-                    "timestamp": timestamp
-                })
-            elif order.side == OrderSide.SELL:
-                # Lógica LIFO: descontar de las compras más recientes
-                sell_qty = qty
-                while sell_qty > 0 and reconstructed_purchases:
-                    last_buy = reconstructed_purchases[-1]
-                    if last_buy["qty"] <= sell_qty:
-                        sell_qty -= last_buy["qty"]
-                        reconstructed_purchases.pop()
-                    else:
-                        last_buy["qty"] -= sell_qty
-                        sell_qty = 0
-
-        # 3. Ajustar el total reconstruido para que coincida exactamente con la posición real
-        recon_total = sum(p["qty"] for p in reconstructed_purchases)
-        tolerance = 1e-5
-        if abs(recon_total - position_qty) > tolerance:
-            logging.warning(f"La cantidad reconstruida ({recon_total:.6f}) difiere de la posición real en Alpaca ({position_qty:.6f}). Ajustando...")
-            if position_qty == 0:
-                reconstructed_purchases = []
-            elif recon_total < position_qty:
-                # Añadir la diferencia como un lote de respaldo (histórico)
-                diff = position_qty - recon_total
-                reconstructed_purchases.insert(0, {
-                    "price": avg_entry_price,
-                    "qty": diff,
-                    "order_id": "historical-fallback",
-                    "timestamp": datetime.utcnow().isoformat()
-                })
-            else:
-                # Recortar desde las más antiguas (al principio de la lista) para mantener las más recientes
-                adjusted_purchases = []
-                remaining_to_keep = position_qty
-                for p in reversed(reconstructed_purchases):
-                    if remaining_to_keep <= 0:
-                        break
-                    if p["qty"] <= remaining_to_keep:
-                        adjusted_purchases.append(p)
-                        remaining_to_keep -= p["qty"]
-                    else:
-                        p["qty"] = remaining_to_keep
-                        adjusted_purchases.append(p)
-                        remaining_to_keep = 0
-                adjusted_purchases.reverse()
-                reconstructed_purchases = adjusted_purchases
-
-        # Guardar en el archivo de estado
-        state = {"purchases": reconstructed_purchases}
-        save_state(state)
-        logging.info(f"Sincronización completada. {len(reconstructed_purchases)} lotes cargados en {STATE_FILE}.")
-        return state
-
-    except Exception as e:
-        logging.error(f"Error durante la sincronización de estado con el servidor: {e}")
-        return load_state()
-
-def verify_and_sync_after_operation(trading_client, symbol, order_id):
-    """
-    Verifica que la orden esté realmente en estado FILLED en el servidor
-    antes de actualizar el archivo JSON mediante sincronización.
-    """
-    logging.info(f"Cerciorándose del estado de la orden {order_id} en el servidor...")
-    try:
-        order = trading_client.get_order_by_id(order_id)
-        if order.status == OrderStatus.FILLED:
-            logging.info(f"La orden {order_id} está confirmada como FILLED. Procediendo a sincronizar con el servidor.")
-            # Esperar un breve instante para dar tiempo a que Alpaca actualice la posición en su API
-            time.sleep(1)
-            sync_state_with_server(trading_client, symbol)
-            return True
-        else:
-            logging.warning(f"La orden {order_id} se encuentra en estado {order.status} (no FILLED). No se actualizará el JSON local.")
-            return False
-    except Exception as e:
-        logging.error(f"Error al verificar la orden {order_id} en el servidor: {e}")
-        return False
 
 def get_latest_price(data_client, symbol):
     """Obtiene el último precio de negociación (Last Trade) para el símbolo."""
@@ -292,8 +167,8 @@ def main():
         logging.error(f"Error al conectar con Alpaca: {e}")
         return
 
-    # Cargar estado y sincronizar con el servidor al iniciar
-    state = sync_state_with_server(trading_client, SYMBOL)
+    # Cargar estado
+    state = load_state()
     purchases = state["purchases"]
     
     logging.info(f"Estado inicial cargado. Compras activas en la cuadrícula: {len(purchases)}")
@@ -306,16 +181,6 @@ def main():
             # Cargar estado y lista de compras en cada iteración para reflejar cambios externos en tesla_state.json
             state = load_state()
             purchases = state["purchases"]
-            
-            # Verificar si el mercado está abierto para operar
-            try:
-                clock = trading_client.get_clock()
-                if not clock.is_open:
-                    logging.info(f"El mercado está cerrado. Próxima apertura: {clock.next_open}. Esperando al próximo ciclo...")
-                    time.sleep(CHECK_INTERVAL_SEC)
-                    continue
-            except Exception as clock_err:
-                logging.error(f"Error al verificar el estado del mercado: {clock_err}. Continuando...")
             
             current_price = get_latest_price(data_client, SYMBOL)
             if current_price is None:
@@ -330,10 +195,9 @@ def main():
                 logging.info("No hay compras registradas en el estado. Ejecutando compra inicial...")
                 buy_info = execute_buy(trading_client, SYMBOL, BUY_AMOUNT)
                 if buy_info:
-                    if verify_and_sync_after_operation(trading_client, SYMBOL, buy_info["order_id"]):
-                        logging.info("Grid de trading iniciado y verificado con el servidor.")
-                    else:
-                        logging.warning("No se pudo verificar la compra en el servidor. El JSON local no fue actualizado.")
+                    purchases.append(buy_info)
+                    save_state(state)
+                    logging.info(f"Grid de trading iniciado con compra a ${buy_info['price']:.2f}")
                 time.sleep(CHECK_INTERVAL_SEC)
                 continue
             
@@ -354,10 +218,9 @@ def main():
                     logging.info(f"¡Condición de compra detectada! Precio actual ${current_price:.2f} <= Objetivo ${buy_target:.2f}")
                     buy_info = execute_buy(trading_client, SYMBOL, BUY_AMOUNT)
                     if buy_info:
-                        if verify_and_sync_after_operation(trading_client, SYMBOL, buy_info["order_id"]):
-                            logging.info("Nueva compra verificada con el servidor y registrada.")
-                        else:
-                            logging.warning("No se pudo verificar la compra en el servidor. El JSON local no fue actualizado.")
+                        purchases.append(buy_info)
+                        save_state(state)
+                        logging.info(f"Nueva compra registrada a ${buy_info['price']:.2f}. Total compras: {len(purchases)}")
                 else:
                     logging.warning(f"El precio cayó a ${current_price:.2f}, pero ya se alcanzó el límite máximo de {MAX_BUYS} compras.")
             
@@ -366,10 +229,15 @@ def main():
                 logging.info(f"¡Condición de venta detectada! Precio actual ${current_price:.2f} >= Objetivo ${sell_target:.2f}")
                 sell_info = execute_sell(trading_client, SYMBOL, last_purchase["qty"])
                 if sell_info:
-                    if verify_and_sync_after_operation(trading_client, SYMBOL, sell_info["order_id"]):
-                        logging.info("Venta de lote verificada con el servidor. Estado actualizado.")
+                    # Remover el último bloque comprado de la pila
+                    removed_purchase = purchases.pop()
+                    save_state(state)
+                    
+                    logging.info(f"Venta completada del lote comprado a ${removed_purchase['price']:.2f}")
+                    if len(purchases) > 0:
+                        logging.info(f"La memoria regresa al precio de compra anterior: ${purchases[-1]['price']:.2f}")
                     else:
-                        logging.warning("No se pudo verificar la venta en el servidor. El JSON local no fue actualizado.")
+                        logging.info("Se han vendido todos los lotes. El grid se reiniciará en el próximo ciclo.")
             
             else:
                 logging.info("El precio se mantiene dentro del rango. No se requieren acciones.")

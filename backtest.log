@@ -1,57 +1,128 @@
-=== INICIO DE SIMULACIÓN HISTÓRICA TSLA (2026-06-22 14:06:18) ===
+=== INICIO DE SIMULACIÓN HISTÓRICA TSLA (2026-06-30 13:50:52) ===
 Rango del Backtest: 1 de Enero de 2026 al 22 de Junio de 2026
+Modo Compuesto: Sí (buy_amount = equity / 10)
 Capital Inicial: $100,000.00
 =================================================================================
 
-[2026-01-01 00:00] COMPRA INICIAL: 22.242982 acciones a $449.58. Efectivo: $90,000.00 | Balance Total: $100,000.00
-[2026-01-20 09:00] COMPRA GRID: 23.612193 acciones a $423.51. Efectivo: $80,000.00 | Balance Total: $99,420.13 | Compras activas: 2/10
-[2026-01-22 17:00] VENTA LOTE: 23.612193 acciones a $445.51 (Compra original a $423.51). Ganancia lote: $+519.47 | Efectivo: $90,519.47 | Balance Total: $100,428.94 | Compras activas restantes: 1/10
-[2026-01-29 14:00] COMPRA GRID: 23.622512 acciones a $423.32. Efectivo: $80,519.47 | Balance Total: $99,935.48 | Compras activas: 2/10
-[2026-02-05 12:00] COMPRA GRID: 25.073968 acciones a $398.82. Efectivo: $70,519.47 | Balance Total: $98,811.54 | Compras activas: 3/10
-[2026-02-09 15:00] VENTA LOTE: 25.073968 acciones a $417.93 (Compra original a $398.82). Ganancia lote: $+479.16 | Efectivo: $80,998.63 | Balance Total: $100,167.20 | Compras activas restantes: 2/10
-[2026-02-23 15:00] COMPRA GRID: 24.943254 acciones a $400.91. Efectivo: $70,998.63 | Balance Total: $99,386.57 | Compras activas: 3/10
-[2026-02-25 20:00] VENTA LOTE: 24.943254 acciones a $417.39 (Compra original a $400.91). Ganancia lote: $+411.06 | Efectivo: $81,409.70 | Balance Total: $100,553.50 | Compras activas restantes: 2/10
-[2026-02-27 16:00] COMPRA GRID: 24.872528 acciones a $402.05. Efectivo: $71,409.70 | Balance Total: $99,849.92 | Compras activas: 3/10
-[2026-03-19 14:00] COMPRA GRID: 26.222967 acciones a $381.35. Efectivo: $61,409.70 | Balance Total: $98,385.30 | Compras activas: 4/10
-[2026-03-23 08:00] COMPRA GRID: 27.723870 acciones a $360.70. Efectivo: $51,409.70 | Balance Total: $96,383.53 | Compras activas: 5/10
-[2026-03-23 13:00] VENTA LOTE: 27.723870 acciones a $381.88 (Compra original a $360.70). Ganancia lote: $+587.05 | Efectivo: $61,996.75 | Balance Total: $99,023.73 | Compras activas restantes: 4/10
-[2026-03-27 17:00] COMPRA GRID: 27.797081 acciones a $359.75. Efectivo: $51,996.75 | Balance Total: $96,878.47 | Compras activas: 5/10
-[2026-03-31 23:00] VENTA LOTE: 27.797081 acciones a $375.00 (Compra original a $359.75). Ganancia lote: $+423.90 | Efectivo: $62,420.65 | Balance Total: $98,780.99 | Compras activas restantes: 4/10
-[2026-04-02 17:00] COMPRA GRID: 27.793836 acciones a $359.79. Efectivo: $52,420.65 | Balance Total: $97,306.44 | Compras activas: 5/10
-[2026-04-07 14:00] COMPRA GRID: 29.521167 acciones a $338.74. Efectivo: $42,420.65 | Balance Total: $94,680.10 | Compras activas: 6/10
-[2026-04-07 22:00] VENTA LOTE: 29.521167 acciones a $357.39 (Compra original a $338.74). Ganancia lote: $+550.57 | Efectivo: $52,971.22 | Balance Total: $97,557.34 | Compras activas restantes: 5/10
-[2026-04-08 18:00] COMPRA GRID: 29.403117 acciones a $340.10. Efectivo: $42,971.22 | Balance Total: $95,400.33 | Compras activas: 6/10
-[2026-04-13 13:00] VENTA LOTE: 29.403117 acciones a $353.92 (Compra original a $340.10). Ganancia lote: $+406.35 | Efectivo: $53,377.57 | Balance Total: $97,530.80 | Compras activas restantes: 5/10
-[2026-04-15 14:00] VENTA LOTE: 27.793836 acciones a $381.35 (Compra original a $359.79). Ganancia lote: $+599.18 | Efectivo: $63,976.75 | Balance Total: $100,952.82 | Compras activas restantes: 4/10
-[2026-04-16 08:00] VENTA LOTE: 26.222967 acciones a $397.32 (Compra original a $381.35). Ganancia lote: $+418.91 | Efectivo: $74,395.66 | Balance Total: $102,501.29 | Compras activas restantes: 3/10
-[2026-04-23 08:00] COMPRA GRID: 26.566776 acciones a $376.41. Efectivo: $64,395.66 | Balance Total: $101,022.16 | Compras activas: 4/10
-[2026-05-01 15:00] VENTA LOTE: 26.566776 acciones a $394.46 (Compra original a $376.41). Ganancia lote: $+479.66 | Efectivo: $74,875.32 | Balance Total: $102,778.99 | Compras activas restantes: 3/10
-[2026-05-08 13:00] VENTA LOTE: 24.872528 acciones a $428.11 (Compra original a $402.05). Ganancia lote: $+648.18 | Efectivo: $85,523.50 | Balance Total: $105,158.97 | Compras activas restantes: 2/10
-[2026-05-11 16:00] VENTA LOTE: 23.622512 acciones a $440.53 (Compra original a $423.32). Ganancia lote: $+406.43 | Efectivo: $95,929.92 | Balance Total: $105,728.62 | Compras activas restantes: 1/10
-[2026-05-12 15:00] COMPRA GRID: 23.522222 acciones a $425.13. Efectivo: $85,929.92 | Balance Total: $105,386.08 | Compras activas: 2/10
-[2026-05-13 14:00] VENTA LOTE: 23.522222 acciones a $447.65 (Compra original a $425.13). Ganancia lote: $+529.72 | Efectivo: $96,459.65 | Balance Total: $106,416.72 | Compras activas restantes: 1/10
-[2026-05-15 13:00] COMPRA GRID: 23.475281 acciones a $425.98. Efectivo: $86,459.65 | Balance Total: $105,934.71 | Compras activas: 2/10
-[2026-05-19 13:00] COMPRA GRID: 25.066426 acciones a $398.94. Efectivo: $76,459.65 | Balance Total: $104,698.49 | Compras activas: 3/10
-[2026-05-20 19:00] VENTA LOTE: 25.066426 acciones a $417.27 (Compra original a $398.94). Ganancia lote: $+459.47 | Efectivo: $86,919.11 | Balance Total: $105,995.97 | Compras activas restantes: 2/10
-[2026-05-27 11:00] VENTA LOTE: 23.475281 acciones a $443.51 (Compra original a $425.98). Ganancia lote: $+411.41 | Efectivo: $97,330.52 | Balance Total: $107,195.40 | Compras activas restantes: 1/10
-[2026-06-01 13:00] COMPRA GRID: 23.642339 acciones a $422.97. Efectivo: $87,330.52 | Balance Total: $106,738.63 | Compras activas: 2/10
-[2026-06-05 15:00] COMPRA GRID: 24.915288 acciones a $401.36. Efectivo: $77,330.52 | Balance Total: $105,747.05 | Compras activas: 3/10
-[2026-06-10 20:00] COMPRA GRID: 26.245913 acciones a $381.01. Efectivo: $67,330.52 | Balance Total: $104,306.38 | Compras activas: 4/10
-[2026-06-11 19:00] VENTA LOTE: 26.245913 acciones a $399.00 (Compra original a $381.01). Ganancia lote: $+472.12 | Efectivo: $77,802.64 | Balance Total: $106,052.08 | Compras activas restantes: 3/10
+[2020-09-01 08:00] COMPRA INICIAL: 44.261497 acciones a $225.93 (Valor: $10,000.00). Efectivo: $90,000.00 | Balance Total: $100,000.00
+[2020-09-03 23:00] COMPRA GRID: 46.486155 acciones a $213.98 (Valor: $9,947.11). Efectivo: $80,052.89 | Balance Total: $99,471.08 | Compras activas: 2/10
+[2020-09-08 19:00] COMPRA GRID: 48.577796 acciones a $202.65 (Valor: $9,844.29). Efectivo: $70,208.60 | Balance Total: $98,442.90 | Compras activas: 3/10
+[2020-10-12 10:00] VENTA LOTE: 48.577796 acciones a $218.89 (Compra original a $202.65). Ganancia lote: $+788.90 | Efectivo: $80,841.80 | Balance Total: $100,705.55 | Compras activas restantes: 2/10
+[2020-10-28 19:00] COMPRA GRID: 48.955282 acciones a $202.71 (Valor: $9,923.73). Efectivo: $70,918.07 | Balance Total: $99,237.25 | Compras activas: 3/10
+[2020-11-05 09:00] VENTA LOTE: 48.955282 acciones a $222.03 (Compra original a $202.71). Ganancia lote: $+945.82 | Efectivo: $81,787.61 | Balance Total: $101,936.31 | Compras activas restantes: 2/10
+[2021-01-26 12:00] VENTA LOTE: 46.486155 acciones a $231.15 (Compra original a $213.98). Ganancia lote: $+798.17 | Efectivo: $92,532.89 | Balance Total: $102,763.93 | Compras activas restantes: 1/10
+[2021-02-09 15:00] VENTA LOTE: 44.261497 acciones a $244.33 (Compra original a $225.93). Ganancia lote: $+814.41 | Efectivo: $103,347.30 | Balance Total: $103,347.30 | Compras activas restantes: 0/10
+[2021-02-09 16:00] COMPRA INICIAL: 42.491283 acciones a $243.22 (Valor: $10,334.73). Efectivo: $93,012.57 | Balance Total: $103,347.30
+[2021-02-23 10:00] COMPRA GRID: 44.629682 acciones a $230.34 (Valor: $10,280.00). Efectivo: $82,732.57 | Balance Total: $102,800.01 | Compras activas: 2/10
+[2021-04-05 14:00] VENTA LOTE: 44.629682 acciones a $248.90 (Compra original a $230.34). Ganancia lote: $+828.33 | Efectivo: $93,840.90 | Balance Total: $104,416.98 | Compras activas restantes: 1/10
+[2021-06-21 14:00] VENTA LOTE: 42.491283 acciones a $262.77 (Compra original a $243.22). Ganancia lote: $+830.70 | Efectivo: $105,006.33 | Balance Total: $105,006.33 | Compras activas restantes: 0/10
+[2021-06-21 15:00] COMPRA INICIAL: 39.927879 acciones a $262.99 (Valor: $10,500.63). Efectivo: $94,505.70 | Balance Total: $105,006.33
+[2021-07-15 08:00] VENTA LOTE: 39.927879 acciones a $284.25 (Compra original a $262.99). Ganancia lote: $+848.87 | Efectivo: $105,855.20 | Balance Total: $105,855.20 | Compras activas restantes: 0/10
+[2021-07-15 09:00] COMPRA INICIAL: 37.296595 acciones a $283.82 (Valor: $10,585.52). Efectivo: $95,269.68 | Balance Total: $105,855.20
+[2021-10-18 17:00] VENTA LOTE: 37.296595 acciones a $307.57 (Compra original a $283.82). Ganancia lote: $+885.79 | Efectivo: $106,740.99 | Balance Total: $106,740.99 | Compras activas restantes: 0/10
+[2021-10-18 18:00] COMPRA INICIAL: 34.781934 acciones a $306.89 (Valor: $10,674.10). Efectivo: $96,066.89 | Balance Total: $106,740.99
+[2021-10-29 19:00] VENTA LOTE: 34.781934 acciones a $331.62 (Compra original a $306.89). Ganancia lote: $+860.29 | Efectivo: $107,601.28 | Balance Total: $107,601.28 | Compras activas restantes: 0/10
+[2021-10-29 20:00] COMPRA INICIAL: 32.429559 acciones a $331.80 (Valor: $10,760.13). Efectivo: $96,841.15 | Balance Total: $107,601.28
+[2022-01-06 11:00] COMPRA GRID: 33.986178 acciones a $315.00 (Valor: $10,705.65). Efectivo: $86,135.50 | Balance Total: $107,056.46 | Compras activas: 2/10
+[2022-01-21 14:00] COMPRA GRID: 35.441728 acciones a $299.08 (Valor: $10,599.91). Efectivo: $75,535.59 | Balance Total: $105,999.12 | Compras activas: 3/10
+[2022-01-24 16:00] COMPRA GRID: 36.971417 acciones a $282.00 (Valor: $10,425.94). Efectivo: $65,109.65 | Balance Total: $104,259.40 | Compras activas: 4/10
+[2022-01-26 13:00] VENTA LOTE: 36.971417 acciones a $304.75 (Compra original a $282.00). Ganancia lote: $+841.10 | Efectivo: $76,376.69 | Balance Total: $107,417.75 | Compras activas restantes: 3/10
+[2022-02-22 09:00] COMPRA GRID: 37.351562 acciones a $281.15 (Valor: $10,501.39). Efectivo: $65,875.30 | Balance Total: $105,013.92 | Compras activas: 4/10
+[2022-03-22 15:00] VENTA LOTE: 37.351562 acciones a $303.73 (Compra original a $281.15). Ganancia lote: $+843.40 | Efectivo: $77,220.09 | Balance Total: $108,157.26 | Compras activas restantes: 3/10
+[2022-04-12 17:00] COMPRA GRID: 37.386454 acciones a $283.89 (Valor: $10,613.64). Efectivo: $66,606.45 | Balance Total: $106,136.40 | Compras activas: 4/10
+[2022-04-26 20:00] COMPRA GRID: 38.777544 acciones a $268.00 (Valor: $10,392.38). Efectivo: $56,214.07 | Balance Total: $103,923.82 | Compras activas: 5/10
+[2022-04-28 18:00] VENTA LOTE: 38.777544 acciones a $290.62 (Compra original a $268.00). Ganancia lote: $+876.95 | Efectivo: $67,483.40 | Balance Total: $107,949.77 | Compras activas restantes: 4/10
+[2022-05-09 09:00] COMPRA GRID: 38.952543 acciones a $269.63 (Valor: $10,502.77). Efectivo: $56,980.63 | Balance Total: $105,027.74 | Compras activas: 5/10
+[2022-05-12 13:00] COMPRA GRID: 40.184286 acciones a $254.78 (Valor: $10,238.15). Efectivo: $46,742.48 | Balance Total: $102,381.52 | Compras activas: 6/10
+[2022-06-01 13:00] VENTA LOTE: 40.184286 acciones a $277.30 (Compra original a $254.78). Ganancia lote: $+904.75 | Efectivo: $57,885.38 | Balance Total: $107,298.37 | Compras activas restantes: 5/10
+[2022-06-10 14:00] COMPRA GRID: 40.602886 acciones a $254.07 (Valor: $10,315.98). Efectivo: $47,569.40 | Balance Total: $103,159.75 | Compras activas: 6/10
+[2022-07-28 17:00] VENTA LOTE: 40.602886 acciones a $276.71 (Compra original a $254.07). Ganancia lote: $+919.33 | Efectivo: $58,804.70 | Balance Total: $108,113.79 | Compras activas restantes: 5/10
+[2022-08-11 12:00] VENTA LOTE: 38.952543 acciones a $291.40 (Compra original a $269.63). Ganancia lote: $+848.00 | Efectivo: $70,155.48 | Balance Total: $110,731.15 | Compras activas restantes: 4/10
+[2022-08-26 19:00] COMPRA GRID: 40.085213 acciones a $268.17 (Valor: $10,749.65). Efectivo: $59,405.82 | Balance Total: $107,496.52 | Compras activas: 5/10
+[2022-09-06 16:00] COMPRA GRID: 41.291604 acciones a $254.32 (Valor: $10,501.28). Efectivo: $48,904.54 | Balance Total: $105,012.81 | Compras activas: 6/10
+[2022-09-20 17:00] COMPRA GRID: 42.449483 acciones a $239.88 (Valor: $10,182.62). Efectivo: $38,721.92 | Balance Total: $101,826.21 | Compras activas: 7/10
+[2022-10-10 16:00] COMPRA GRID: 43.333634 acciones a $227.42 (Valor: $9,854.94). Efectivo: $28,866.99 | Balance Total: $98,549.35 | Compras activas: 8/10
+[2022-10-24 15:00] VENTA LOTE: 43.333634 acciones a $245.77 (Compra original a $227.42). Ganancia lote: $+795.17 | Efectivo: $39,517.09 | Balance Total: $104,171.86 | Compras activas restantes: 7/10
+[2022-10-27 13:00] COMPRA GRID: 43.693222 acciones a $227.29 (Valor: $9,931.03). Efectivo: $29,586.06 | Balance Total: $99,310.32 | Compras activas: 8/10
+[2022-11-03 19:00] COMPRA GRID: 44.486119 acciones a $214.24 (Valor: $9,530.71). Efectivo: $20,055.36 | Balance Total: $95,307.06 | Compras activas: 9/10
+[2022-11-10 13:00] VENTA LOTE: 44.486119 acciones a $234.30 (Compra original a $214.24). Ganancia lote: $+892.39 | Efectivo: $30,478.45 | Balance Total: $102,353.13 | Compras activas restantes: 8/10
+[2022-11-11 15:00] VENTA LOTE: 43.693222 acciones a $245.69 (Compra original a $227.29). Ganancia lote: $+804.17 | Efectivo: $41,213.66 | Balance Total: $105,848.70 | Compras activas restantes: 7/10
+[2022-12-13 13:00] VENTA LOTE: 42.449483 acciones a $262.50 (Compra original a $239.88). Ganancia lote: $+960.37 | Efectivo: $52,356.65 | Balance Total: $110,269.59 | Compras activas restantes: 6/10
+[2022-12-19 15:00] COMPRA GRID: 43.762962 acciones a $241.26 (Valor: $10,558.47). Efectivo: $41,798.18 | Balance Total: $105,584.71 | Compras activas: 7/10
+[2023-01-04 14:00] COMPRA GRID: 44.690052 acciones a $229.01 (Valor: $10,234.47). Efectivo: $31,563.71 | Balance Total: $102,344.69 | Compras activas: 8/10
+[2023-01-24 21:00] VENTA LOTE: 44.690052 acciones a $251.97 (Compra original a $229.01). Ganancia lote: $+1,026.08 | Efectivo: $42,824.26 | Balance Total: $109,441.02 | Compras activas restantes: 7/10
+[2023-02-02 16:00] VENTA LOTE: 43.762962 acciones a $261.40 (Compra original a $241.26). Ganancia lote: $+881.17 | Efectivo: $54,263.90 | Balance Total: $111,934.16 | Compras activas restantes: 6/10
+[2023-03-16 16:00] VENTA LOTE: 41.291604 acciones a $275.18 (Compra original a $254.32). Ganancia lote: $+861.14 | Efectivo: $65,626.32 | Balance Total: $114,973.21 | Compras activas restantes: 5/10
+[2023-04-04 09:00] VENTA LOTE: 40.085213 acciones a $289.77 (Compra original a $268.17). Ganancia lote: $+865.84 | Efectivo: $77,241.81 | Balance Total: $117,590.52 | Compras activas restantes: 4/10
+[2023-04-28 13:00] VENTA LOTE: 37.386454 acciones a $307.03 (Compra original a $283.89). Ganancia lote: $+865.12 | Efectivo: $88,720.57 | Balance Total: $119,993.87 | Compras activas restantes: 3/10
+[2023-05-25 14:00] VENTA LOTE: 35.441728 acciones a $323.86 (Compra original a $299.08). Ganancia lote: $+878.25 | Efectivo: $100,198.73 | Balance Total: $121,708.13 | Compras activas restantes: 2/10
+[2023-06-15 13:00] VENTA LOTE: 33.986178 acciones a $341.06 (Compra original a $315.00). Ganancia lote: $+885.68 | Efectivo: $111,790.06 | Balance Total: $122,850.48 | Compras activas restantes: 1/10
+[2023-07-18 16:00] VENTA LOTE: 32.429559 acciones a $362.58 (Compra original a $331.80). Ganancia lote: $+998.18 | Efectivo: $123,548.37 | Balance Total: $123,548.37 | Compras activas restantes: 0/10
+[2023-07-18 17:00] COMPRA INICIAL: 33.947454 acciones a $363.94 (Valor: $12,354.84). Efectivo: $111,193.53 | Balance Total: $123,548.37
+[2023-07-21 18:00] COMPRA GRID: 35.703418 acciones a $344.16 (Valor: $12,287.69). Efectivo: $98,905.84 | Balance Total: $122,876.88 | Compras activas: 2/10
+[2023-08-02 20:00] COMPRA GRID: 37.230032 acciones a $326.80 (Valor: $12,166.77). Efectivo: $86,739.07 | Balance Total: $121,667.75 | Compras activas: 3/10
+[2023-09-27 14:00] COMPRA GRID: 38.637131 acciones a $310.35 (Valor: $11,990.93). Efectivo: $74,748.14 | Balance Total: $119,909.26 | Compras activas: 4/10
+[2023-10-24 20:00] VENTA LOTE: 38.637131 acciones a $344.94 (Compra original a $310.35). Ganancia lote: $+1,336.57 | Efectivo: $88,075.63 | Balance Total: $124,943.13 | Compras activas restantes: 3/10
+[2023-11-03 16:00] VENTA LOTE: 37.230032 acciones a $353.29 (Compra original a $326.80). Ganancia lote: $+986.22 | Efectivo: $101,228.63 | Balance Total: $125,835.59 | Compras activas restantes: 2/10
+[2023-11-14 13:00] VENTA LOTE: 35.703418 acciones a $372.00 (Compra original a $344.16). Ganancia lote: $+993.98 | Efectivo: $114,510.30 | Balance Total: $127,138.76 | Compras activas restantes: 1/10
+[2024-01-16 13:00] VENTA LOTE: 33.947454 acciones a $393.76 (Compra original a $363.94). Ganancia lote: $+1,012.18 | Efectivo: $127,877.32 | Balance Total: $127,877.32 | Compras activas restantes: 0/10
+[2024-01-16 14:00] COMPRA INICIAL: 32.627592 acciones a $391.93 (Valor: $12,787.73). Efectivo: $115,089.59 | Balance Total: $127,877.32
+[2024-03-14 14:00] VENTA LOTE: 32.627592 acciones a $425.37 (Compra original a $391.93). Ganancia lote: $+1,091.07 | Efectivo: $128,968.39 | Balance Total: $128,968.39 | Compras activas restantes: 0/10
+[2024-03-14 15:00] COMPRA INICIAL: 30.321959 acciones a $425.33 (Valor: $12,896.84). Efectivo: $116,071.55 | Balance Total: $128,968.39
+[2024-04-18 20:00] COMPRA GRID: 31.771314 acciones a $403.88 (Valor: $12,831.80). Efectivo: $103,239.75 | Balance Total: $128,317.98 | Compras activas: 2/10
+[2024-06-12 12:00] VENTA LOTE: 31.771314 acciones a $436.74 (Compra original a $403.88). Ganancia lote: $+1,044.01 | Efectivo: $117,115.56 | Balance Total: $130,358.37 | Compras activas restantes: 1/10
+[2024-07-02 19:00] VENTA LOTE: 30.321959 acciones a $459.42 (Compra original a $425.33). Ganancia lote: $+1,033.68 | Efectivo: $131,046.07 | Balance Total: $131,046.07 | Compras activas restantes: 0/10
+[2024-07-02 20:00] COMPRA INICIAL: 28.550342 acciones a $459.00 (Valor: $13,104.61). Efectivo: $117,941.46 | Balance Total: $131,046.07
+[2024-07-18 15:00] COMPRA GRID: 29.974249 acciones a $434.90 (Valor: $13,035.80). Efectivo: $104,905.66 | Balance Total: $130,358.01 | Compras activas: 2/10
+[2024-07-30 20:00] COMPRA GRID: 32.369904 acciones a $395.61 (Valor: $12,805.86). Efectivo: $92,099.80 | Balance Total: $128,058.58 | Compras activas: 3/10
+[2024-09-12 22:00] VENTA LOTE: 32.369904 acciones a $427.58 (Compra original a $395.61). Ganancia lote: $+1,034.87 | Efectivo: $105,940.53 | Balance Total: $130,964.47 | Compras activas restantes: 2/10
+[2024-10-07 18:00] COMPRA GRID: 31.730113 acciones a $409.39 (Valor: $12,989.99). Efectivo: $92,950.54 | Balance Total: $129,899.91 | Compras activas: 3/10
+[2024-12-05 17:00] VENTA LOTE: 31.730113 acciones a $443.94 (Compra original a $409.39). Ganancia lote: $+1,096.43 | Efectivo: $107,036.96 | Balance Total: $133,018.66 | Compras activas restantes: 2/10
+[2025-01-13 16:00] COMPRA GRID: 31.783922 acciones a $412.77 (Valor: $13,119.41). Efectivo: $93,917.55 | Balance Total: $131,194.08 | Compras activas: 3/10
+[2025-01-22 20:00] VENTA LOTE: 31.783922 acciones a $446.16 (Compra original a $412.77). Ganancia lote: $+1,061.31 | Efectivo: $108,098.27 | Balance Total: $134,209.60 | Compras activas restantes: 2/10
+[2025-02-03 09:00] COMPRA GRID: 32.301754 acciones a $408.70 (Valor: $13,201.73). Efectivo: $94,896.54 | Balance Total: $132,017.27 | Compras activas: 3/10
+[2025-03-04 09:00] COMPRA GRID: 33.654499 acciones a $386.20 (Valor: $12,997.37). Efectivo: $81,899.17 | Balance Total: $129,973.68 | Compras activas: 4/10
+[2025-04-04 10:00] COMPRA GRID: 35.492309 acciones a $355.40 (Valor: $12,613.97). Efectivo: $69,285.21 | Balance Total: $126,139.67 | Compras activas: 5/10
+[2025-04-09 17:00] VENTA LOTE: 35.492309 acciones a $383.98 (Compra original a $355.40). Ganancia lote: $+1,014.37 | Efectivo: $82,913.54 | Balance Total: $130,711.70 | Compras activas restantes: 4/10
+[2025-04-21 08:00] COMPRA GRID: 35.220275 acciones a $364.10 (Valor: $12,823.70). Efectivo: $70,089.84 | Balance Total: $128,237.02 | Compras activas: 5/10
+[2025-04-29 13:00] VENTA LOTE: 35.220275 acciones a $393.50 (Compra original a $364.10). Ganancia lote: $+1,035.48 | Efectivo: $83,949.02 | Balance Total: $132,932.23 | Compras activas restantes: 4/10
+[2025-04-30 20:00] VENTA LOTE: 33.654499 acciones a $419.10 (Compra original a $386.20). Ganancia lote: $+1,107.23 | Efectivo: $98,053.62 | Balance Total: $136,118.94 | Compras activas restantes: 3/10
+[2025-05-08 15:00] VENTA LOTE: 32.301754 acciones a $441.79 (Compra original a $408.70). Ganancia lote: $+1,068.70 | Efectivo: $112,324.05 | Balance Total: $138,179.34 | Compras activas restantes: 2/10
+[2025-06-06 08:00] VENTA LOTE: 29.974249 acciones a $469.90 (Compra original a $434.90). Ganancia lote: $+1,049.10 | Efectivo: $126,408.95 | Balance Total: $139,824.76 | Compras activas restantes: 1/10
+[2025-06-26 13:00] VENTA LOTE: 28.550342 acciones a $495.97 (Compra original a $459.00). Ganancia lote: $+1,055.51 | Efectivo: $140,569.06 | Balance Total: $140,569.06 | Compras activas restantes: 0/10
+[2025-06-26 14:00] COMPRA INICIAL: 28.482952 acciones a $493.52 (Valor: $14,056.91). Efectivo: $126,512.16 | Balance Total: $140,569.06
+[2025-07-30 20:00] VENTA LOTE: 28.482952 acciones a $551.53 (Compra original a $493.52). Ganancia lote: $+1,652.30 | Efectivo: $142,221.36 | Balance Total: $142,221.36 | Compras activas restantes: 0/10
+[2025-07-30 21:00] COMPRA INICIAL: 25.306742 acciones a $561.99 (Valor: $14,222.14). Efectivo: $127,999.22 | Balance Total: $142,221.36
+[2025-07-31 17:00] COMPRA GRID: 26.526629 acciones a $533.42 (Valor: $14,149.83). Efectivo: $113,849.39 | Balance Total: $141,498.35 | Compras activas: 2/10
+[2025-08-20 13:00] COMPRA GRID: 27.661005 acciones a $506.50 (Valor: $14,010.30). Efectivo: $99,839.09 | Balance Total: $140,102.99 | Compras activas: 3/10
+[2025-11-20 17:00] COMPRA GRID: 28.729983 acciones a $480.44 (Valor: $13,803.18). Efectivo: $86,035.91 | Balance Total: $138,031.77 | Compras activas: 4/10
+[2026-01-20 09:00] COMPRA GRID: 29.856930 acciones a $452.00 (Valor: $13,495.33). Efectivo: $72,540.58 | Balance Total: $134,953.32 | Compras activas: 5/10
+[2026-01-29 14:00] COMPRA GRID: 30.736296 acciones a $428.52 (Valor: $13,171.12). Efectivo: $59,369.46 | Balance Total: $131,711.18 | Compras activas: 6/10
+[2026-02-05 12:00] COMPRA GRID: 31.493982 acciones a $406.30 (Valor: $12,796.00). Efectivo: $46,573.46 | Balance Total: $127,960.05 | Compras activas: 7/10
+[2026-02-23 15:00] COMPRA GRID: 32.108240 acciones a $385.63 (Valor: $12,382.06). Efectivo: $34,191.40 | Balance Total: $123,820.61 | Compras activas: 8/10
+[2026-03-26 19:00] COMPRA GRID: 32.590278 acciones a $365.75 (Valor: $11,919.89). Efectivo: $22,271.50 | Balance Total: $119,198.94 | Compras activas: 9/10
+[2026-04-15 08:00] VENTA LOTE: 32.590278 acciones a $396.50 (Compra original a $365.75). Ganancia lote: $+1,002.15 | Efectivo: $35,193.55 | Balance Total: $127,348.00 | Compras activas restantes: 8/10
+[2026-04-16 08:00] VENTA LOTE: 32.108240 acciones a $418.05 (Compra original a $385.63). Ganancia lote: $+1,040.79 | Efectivo: $48,616.40 | Balance Total: $132,356.65 | Compras activas restantes: 7/10
+[2026-05-29 13:00] VENTA LOTE: 31.493982 acciones a $441.14 (Compra original a $406.30). Ganancia lote: $+1,097.25 | Efectivo: $62,509.65 | Balance Total: $136,981.84 | Compras activas restantes: 6/10
+[2026-06-01 08:00] VENTA LOTE: 30.736296 acciones a $462.89 (Compra original a $428.52). Ganancia lote: $+1,056.41 | Efectivo: $76,737.18 | Balance Total: $140,653.63 | Compras activas restantes: 5/10
+[2026-06-03 14:00] COMPRA GRID: 31.764436 acciones a $427.36 (Valor: $13,574.69). Efectivo: $63,162.49 | Balance Total: $135,746.91 | Compras activas: 6/10
+[2026-06-09 15:00] COMPRA GRID: 32.701521 acciones a $401.88 (Valor: $13,141.92). Efectivo: $50,020.56 | Balance Total: $131,419.24 | Compras activas: 7/10
+[2026-06-17 19:00] COMPRA GRID: 33.457985 acciones a $378.85 (Valor: $12,675.56). Efectivo: $37,345.00 | Balance Total: $126,755.61 | Compras activas: 8/10
+[2026-06-25 13:00] COMPRA GRID: 34.048724 acciones a $357.43 (Valor: $12,170.04). Efectivo: $25,174.97 | Balance Total: $121,700.35 | Compras activas: 9/10
 
 =================================================================================
                              RESULTADOS FINALES                                  
 =================================================================================
-Período:            2026-01-01 a 2026-06-17
-Precio Inicial TSLA: $449.58
-Precio Final TSLA:   $397.67
+Período:            2020-09-01 a 2026-06-26
+Precio Inicial TSLA: $225.93
+Precio Final TSLA:   $372.73
 Capital Inicial:     $100,000.00
-Efectivo Final:      $77,802.64
-Valor de Acciones:   $28,155.26 (70.800609 acciones)
-Capital Final Total: $105,957.90
-Ganancia/Pérdida:    $+5,957.90
-Retorno (ROI):       +5.96%
-Total de Compras:    19
-Total de Ventas:     16
-Compras Activas:     3/10
+Efectivo Final:      $25,174.97
+Valor de Acciones:   $100,657.21 (270.053956 acciones)
+Capital Final Total: $125,832.18
+Ganancia/Pérdida:    $+25,832.18
+Retorno (ROI):       +25.83%
+Total de Compras:    57
+Total de Ventas:     48
+Compras Activas:     9/10
 =================================================================================

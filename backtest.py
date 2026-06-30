@@ -7,6 +7,8 @@ from alpaca.data.requests import StockBarsRequest
 from alpaca.data.timeframe import TimeFrame
 
 def main():
+    import sys
+    compuesto = "--compuesto" in sys.argv
     # Cargar variables de entorno
     load_dotenv()
     
@@ -25,10 +27,10 @@ def main():
     
     # Solicitamos barras por Hora para mayor precisión de intradía
     req = StockBarsRequest(
-        symbol_or_symbols="TSLA",
+        symbol_or_symbols="MSFT",#["AMD", "TSLA", "NVDA", "AMZN", "MSFT"],#"TSLA",
         timeframe=TimeFrame.Hour,
-        start=datetime(2026, 1, 1),
-        end=datetime(2026, 6, 22)
+        start=datetime(2020, 9, 1),
+        end=datetime(2026, 6, 28)
     )
     
     try:
@@ -50,7 +52,9 @@ def main():
     buy_amount = 10000.0
     max_buys = 10
     buy_drop_pct = 0.05
-    sell_rise_pct = 0.04
+    sell_rise_pct = 0.08
+    
+    print(f"Modo compuesto: {'ACTIVO (buy_amount = equity / 10)' if compuesto else 'INACTIVO (buy_amount = $10,000 fijo)'}")
     
     # Estadísticas del backtest
     total_buys_count = 0
@@ -62,6 +66,7 @@ def main():
     with open(log_file_path, "w", encoding="utf-8") as lf:
         lf.write(f"=== INICIO DE SIMULACIÓN HISTÓRICA TSLA ({datetime.now().strftime('%Y-%m-%d %H:%M:%S')}) ===\n")
         lf.write(f"Rango del Backtest: 1 de Enero de 2026 al 22 de Junio de 2026\n")
+        lf.write(f"Modo Compuesto: {'Sí (buy_amount = equity / 10)' if compuesto else 'No (buy_amount = $10,000 fijo)'}\n")
         lf.write(f"Capital Inicial: ${starting_cash:,.2f}\n")
         lf.write("=================================================================================\n\n")
     
@@ -72,8 +77,9 @@ def main():
         
         # Caso A: No hay compras activas. Ejecutamos la compra inicial.
         if len(purchases) == 0:
-            qty = buy_amount / close_price
-            cash -= buy_amount
+            current_buy_amount = (cash / 10.0) if compuesto else buy_amount
+            qty = current_buy_amount / close_price
+            cash -= current_buy_amount
             purchase_info = {"price": close_price, "qty": qty, "timestamp": timestamp}
             purchases.append(purchase_info)
             total_buys_count += 1
@@ -90,7 +96,7 @@ def main():
             })
             
             with open(log_file_path, "a", encoding="utf-8") as lf:
-                lf.write(f"[{timestamp.strftime('%Y-%m-%d %H:%M')}] COMPRA INICIAL: {qty:.6f} acciones a ${close_price:.2f}. Efectivo: ${cash:,.2f} | Balance Total: ${total_equity:,.2f}\n")
+                lf.write(f"[{timestamp.strftime('%Y-%m-%d %H:%M')}] COMPRA INICIAL: {qty:.6f} acciones a ${close_price:.2f} (Valor: ${current_buy_amount:,.2f}). Efectivo: ${cash:,.2f} | Balance Total: ${total_equity:,.2f}\n")
             continue
             
         # Obtener última compra de la pila
@@ -103,27 +109,33 @@ def main():
         # Caso B: El precio cruzó el objetivo de compra (-5%)
         if close_price <= buy_target:
             if len(purchases) < max_buys:
-                qty = buy_amount / close_price
-                cash -= buy_amount
-                purchase_info = {"price": close_price, "qty": qty, "timestamp": timestamp}
-                purchases.append(purchase_info)
-                total_buys_count += 1
+                current_equity = cash + sum(p['qty'] for p in purchases) * close_price
+                current_buy_amount = (current_equity / 10.0) if compuesto else buy_amount
+                if current_buy_amount > cash:
+                    current_buy_amount = cash
                 
-                # Calcular balance total actual
-                holdings_val = sum(p['qty'] for p in purchases) * close_price
-                total_equity = cash + holdings_val
-                
-                trades_log.append({
-                    "type": "BUY_GRID",
-                    "price": close_price,
-                    "qty": qty,
-                    "cash_remaining": cash,
-                    "timestamp": timestamp
-                })
-                
-                with open(log_file_path, "a", encoding="utf-8") as lf:
-                    lf.write(f"[{timestamp.strftime('%Y-%m-%d %H:%M')}] COMPRA GRID: {qty:.6f} acciones a ${close_price:.2f}. Efectivo: ${cash:,.2f} | Balance Total: ${total_equity:,.2f} | Compras activas: {len(purchases)}/10\n")
-                
+                if current_buy_amount > 0:
+                    qty = current_buy_amount / close_price
+                    cash -= current_buy_amount
+                    purchase_info = {"price": close_price, "qty": qty, "timestamp": timestamp}
+                    purchases.append(purchase_info)
+                    total_buys_count += 1
+                    
+                    # Calcular balance total actual
+                    holdings_val = sum(p['qty'] for p in purchases) * close_price
+                    total_equity = cash + holdings_val
+                    
+                    trades_log.append({
+                        "type": "BUY_GRID",
+                        "price": close_price,
+                        "qty": qty,
+                        "cash_remaining": cash,
+                        "timestamp": timestamp
+                    })
+                    
+                    with open(log_file_path, "a", encoding="utf-8") as lf:
+                        lf.write(f"[{timestamp.strftime('%Y-%m-%d %H:%M')}] COMPRA GRID: {qty:.6f} acciones a ${close_price:.2f} (Valor: ${current_buy_amount:,.2f}). Efectivo: ${cash:,.2f} | Balance Total: ${total_equity:,.2f} | Compras activas: {len(purchases)}/10\n")
+                    
         # Caso C: El precio cruzó el objetivo de venta (+4%)
         elif close_price >= sell_target:
             # Vender el último lote comprado (LIFO)
@@ -136,7 +148,8 @@ def main():
             # Calcular balance total actual
             holdings_val = sum(p['qty'] for p in purchases) * close_price
             total_equity = cash + holdings_val
-            profit = revenue - buy_amount
+            original_cost = removed_purchase["qty"] * removed_purchase["price"]
+            profit = revenue - original_cost
             
             trades_log.append({
                 "type": "SELL",
